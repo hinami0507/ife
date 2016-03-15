@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flex布局练习</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .flex-container {
+
+            border: 1px solid #ddd;
+            padding: 20px;
+            /*伸缩布局*/
+            display: flex;
+            /*主轴方向*/
+            flex-direction: row;
+            /*多行*/
+            flex-wrap: wrap;
+            /*水平对齐方式*/
+            justify-content: space-between;
+            /*垂直对齐方式*/
+            /*
+            行内垂直对齐方式： align-items
+            行与行对齐方式：justify-content
+            单个元素对齐方式: align-self
+            */
+            align-items: center;
+        }
+
+        section {
+            border: 1px solid red;
+            width: 150px;
+        }
+
+        #box1 {
+            height: 120px;
+        }
+
+        #box2 {
+            height: 100px;
+        }
+
+        #box3 {
+            height: 40px;
+        }
+
+        #box4 {
+            border-color: green;
+            height: 200px;
+
+        }
+
+        @media (max-width: 640px) {
+            #box4{
+                order:-1;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="flex-container">
+    <section id="box1">box1</section>
+    <section id="box2">box2</section>
+    <section id="box3">box3</section>
+    <section id="box4">box4</section>
+</div>
+
+<!--<div class="container">
+    <section></section>
+</div>-->
+</body>
+</html>
