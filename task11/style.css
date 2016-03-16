@@ -1,3 +1,15 @@
+/*字体图标*/
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1458138035_1683109.eot');
+  /* IE9*/
+  src: url('//at.alicdn.com/t/font_1458138035_1683109.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('//at.alicdn.com/t/font_1458138035_1683109.woff') format('woff'), /* chrome、firefox */ url('//at.alicdn.com/t/font_1458138035_1683109.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('//at.alicdn.com/t/font_1458138035_1683109.svg#iconfont') format('svg');
+  /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont";
+  font-style: normal;
+}
 /*reset*/
 html {
   color: #575757;
@@ -63,8 +75,56 @@ body {
   display: block;
   width: 100%;
 }
-.block {
+.page-tags {
+  list-style: none;
   background: #fff;
-  border-bottom: 10px;
-  padding: 10px;
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+}
+.page-tags > li {
+  border-bottom: 1px solid #ddd;
+  flex-grow: 1;
+  /*显示定义分配比例*/
+  text-align: center;
+  line-height: 1.5;
+  padding-bottom: 1rem;
+}
+.page-tags > li i {
+  font-size: 2rem;
+}
+.page-column {
+  list-style: none;
+  background: #fff;
+  padding: 1rem;
+  margin: 0;
+  margin-bottom: 1rem;
+  display: flex;
+}
+.page-column > li {
+  border-right: 1px solid #ddd;
+  flex-grow: 1;
+  /*显示定义分配比例*/
+  text-align: center;
+}
+.page-column > li:last-child {
+  border-right: none;
+}
+.page-column > li img {
+  display: block;
+  width: 100%;
+}
+.page-card {
+  background: #fff;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+.page-card > .title {
+  border-bottom: 1px solid #ddd;
+}
+.page-card > .title:before,
+.page-card > .title:after {
+  content: '';
+  display: table;
+  clear: both;
 }
