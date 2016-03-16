@@ -1,0 +1,81 @@
+//变量
+@font-black: #575757;
+
+/*reset*/
+html {
+  color: @font-black;
+  font-size: 16px;
+  background: rgb(245, 245, 245);
+}
+
+a {
+  text-decoration: none;
+  color: @font-black;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+/*util*/
+.clearfix {
+  &:before, &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.page-header {
+  @H: 4rem;
+  position: relative;
+  background: rgb(147, 212, 217);
+  > h1 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    line-height: @H;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  > a {
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    height: @H;
+    line-height: @H;
+    color: #fff;
+  }
+}
+
+.page-nav {
+  display: table;
+  width: 100%;
+  height: 3em;
+  background: #fff;
+  a {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    &.active {
+      border-color: green;
+    }
+  }
+}
+
+.page-banner {
+  width:100%;
+  img{
+    display: block;
+    width:100%;
+  }
+}
+
+.block {
+  background: #fff;
+  border-bottom: 10px;
+  padding: 10px;
+}
