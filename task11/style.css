@@ -25,6 +25,10 @@ body {
   padding: 0;
   margin: 0;
 }
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
 /*util*/
 .clearfix:before,
 .clearfix:after {
@@ -127,4 +131,40 @@ body {
   content: '';
   display: table;
   clear: both;
+}
+.page-card > .body:before,
+.page-card > .body:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.page-card > .body dl {
+  display: flex;
+  margin-right: 0;
+}
+.page-card > .body dl dt {
+  width: 120px;
+  height: 110px;
+}
+.page-card > .body dl dt img {
+  border: 1px solid orange;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+.page-card > .body dl dd {
+  flex-grow: 1;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.page-card > .body dl dd a {
+  flex-grow: 1;
+  background: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-card > .body dl dd a:first-child {
+  margin-bottom: 1rem;
 }
