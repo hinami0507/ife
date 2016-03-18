@@ -36,6 +36,7 @@ img {
   display: table;
   clear: both;
 }
+/*页面部分*/
 .page-header {
   position: relative;
   background: #93d4d9;
@@ -167,4 +168,32 @@ img {
 }
 .page-card > .body dl dd a:first-child {
   margin-bottom: 1rem;
+}
+.page-articles {
+  margin-bottom: 1rem;
+}
+.page-articles section {
+  padding: 1rem;
+  margin-bottom: 4px;
+  background: #fff;
+  display: flex;
+}
+.page-articles section img {
+  width: 140px;
+  height: 100px;
+}
+.page-articles section .content {
+  margin-left: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.page-articles section .content strong {
+  font-size: 22px;
+}
+.page-articles section .content small {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #aaaaaa;
 }
