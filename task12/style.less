@@ -1,0 +1,137 @@
+/*reset*/
+html, body, form, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+/*框架*/
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .main {
+    flex-grow: 1;
+    display: flex;
+    .page-warp {
+      flex-grow: 1;
+    }
+  }
+}
+
+/*页头*/
+header {
+  display: flex;
+  justify-content: flex-end; //右对齐
+  align-items: center; //垂直居中
+  padding: 8px 30px;
+
+  background: rgb(33, 137, 190);
+  .logo {
+    flex-grow: 1;
+  }
+  .search-form {
+    padding: 3px 5px;
+    background: #fff;
+    border-radius: 10px;
+    margin-right: 20px;
+    input[type=text] {
+      border: none;
+    }
+    margin-right: 20px;
+  }
+  .user {
+    color: #fff;
+
+  }
+}
+
+/*侧边栏*/
+aside {
+  @font-color: rgb(110, 130, 150);
+  @font-hcolor: #fff;
+  background: rgb(43, 46, 61);
+  color: @font-color;
+  padding: 1rem 0 1rem 3rem;
+  .user {
+    width: 260px;
+    color: #fff;
+    margin-bottom: 1rem;
+    .name {
+      display: flex;
+      align-items: center; //垂直居中
+      img {
+        height: 4rem;
+        width: 4rem;
+        margin-right: .5rem;
+      }
+    }
+    .tabs {
+      display: flex;
+      > div {
+        text-align: center;
+        padding: 0 1rem;
+        margin: 1rem 0;
+        &:first-child {
+          border-right: 1px solid #fff;
+        }
+      }
+    }
+  }
+  nav {
+    .title {
+      cursor: pointer;
+      padding: 5px 3px;
+      &.selected {
+        color: @font-hcolor;
+        & ~ ul {
+          display: block;
+        }
+      }
+    }
+    .title.selected, .title.selected ~ ul {
+      background: rgb(56, 62, 78);
+    }
+    ul {
+      ul {
+        display: none;
+        padding-left: 2rem;
+      }
+    }
+  }
+}
+
+/*内容栏*/
+.page-warp {
+  background: rgb(238, 238, 238);
+  .nav-tabs {
+    padding: 4px 20px;
+    background: #fff;
+  }
+  .page-content {
+    padding-left: 4rem;
+
+  }
+}
+
+/*部件*/
+.card{
+  border:1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  >.title{
+    background:rgb(244,245,247);
+    padding:.5rem;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+  }
+  >.body{
+    background: #fff;
+    padding:.5rem;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+  }
+}
