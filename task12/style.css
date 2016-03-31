@@ -82,7 +82,7 @@ aside nav .title {
   padding: 5px 3px;
 }
 aside nav .title.selected {
-  color: #ffffff;
+  color: #fff;
 }
 aside nav .title.selected ~ ul {
   display: block;

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>听指令的小方块2</title>
+    <style>
+        .container {
+            position: relative;
+            width: 500px;
+            height: auto;
+            margin: 100px auto;
+        }
+
+        #app {
+            width: 500px;
+            height: 500px;
+        }
+
+        #app table {
+            width: 500px;
+            height: 500px;
+            table-layout: fixed;
+            border-collapse: collapse;
+            box-sizing: border-box;
+        }
+
+        #app td {
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+        }
+
+        #app i {
+            position: absolute;
+            width: 62px;
+            height: 62px;
+            text-align: center;
+            line-height: 62px;
+        }
+
+        #box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 62px;
+            height: 62px;
+            box-sizing: border-box;
+            border-left: 10px solid red;
+            background: #2189be;
+            transition: .3s all;
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="box"></div>
+    <div id="app"></div>
+    <p>
+        <button id="leftBtn">左移</button>
+        <button id="rightBtn">右移</button>
+        <button id="upBtn">上移</button>
+        <button id="downBtn">下移</button>
+        <br/>
+        <button id="MoveLeftBtn">左转+前进一格</button>
+        <button id="MoveRightBtn">右转+前进一格</button>
+        <br/>
+    </p>
+
+</div>
+
+<script>
+    (function () {
+        //小盒子
+        var box = createBox('#box');
+        init();//构造棋盘
+        //操作
+        document.querySelector('#leftBtn').addEventListener('click', function () {
+            box.turn(-90);
+        });
+        document.querySelector('#rightBtn').addEventListener('click', function () {
+            box.turn(+90);
+        });
+        document.querySelector('#bottomBtn').addEventListener('click', function () {
+            box.turn(-180);
+        });
+        document.querySelector('#goBtn').addEventListener('click', function () {
+            box.go();
+        });
+        function init() {
+            var app = document.getElementById('app');
+            var table = '<table>';//构造表格
+            var icon = '';//构造标记
+            for (var row = 0; row < 8; row++) {
+                table += '<tr>';
+                icon += '<i style="left:-62px;top:' + row * 62 + 'px">' + row + '</i>';
+                for (var col = 0; col < 8; col++) {
+                    if (row == 0) {
+                        icon += '<i style="left:' + col * 62 + 'px;top:-62px">' + col + '</i>';
+                    }
+                    table += '<td id="td' + row + '-' + col + '"></td>'
+                }
+                table += '</tr>';
+            }
+            table += '</table>';
+            app.innerHTML = icon + table;
+        }
+
+        function createBox(selector) {
+            var dom = document.querySelector(selector);
+            var p = [0, 0];//位置x,y
+            var deg = 180;//角度
+            return {
+                go: function () {
+                    var yu = deg % 360;
+                    if ((yu === 180 || yu === -180 ) && p[0] < 7)p[0]++;
+                    if ((yu === 0 && p[0] > 0 ) && p[0] > 0)p[0]--;
+                    if ((yu === 90 || yu === -270 ) && p[1] > 0)p[1]--;
+                    if ((yu === 270 || yu === -90 ) && p[1] < 7)p[1]++;
+                    dom.style.left = p[0] * 62.4 + 'px';
+                    dom.style.top = p[1] * 62.4 + 'px';
+                },
+                turn: function (add) {
+                    deg += add;
+                    dom.style.transform = 'rotate(' + deg + 'deg)';
+                }
+            }
+        }
+    })();
+</script>
+</body>
+</html>
