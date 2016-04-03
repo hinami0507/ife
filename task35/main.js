@@ -1,3 +1,4 @@
+
 function mapInit(selector, cols, w) {
     var dom = document.querySelector(selector);
     var table = '<table>';//构造表格
@@ -65,11 +66,14 @@ function consoleInit(selector) {
         clearTimeout(consoler_error_handler);
         check_consoler_errors(JSON.parse(consoler.dataset.cmd || '[]'));
     });
+
+    var reg=/^go \d{1,2}|mov (right|top|left|bottom) \d{1,2}|tra (right|top|left|bottom) \d{1,2}$/;
     function check_consoler_errors(arr) {
         var errors = [];
         arr.forEach(function (e, index) {
-            var item = e.split(' ');
-            if (item.length < 2 || item.length > 3) {
+            console.info(e);
+            console.info(reg.test(e));
+            if (!reg.test(e)) {
                 errors.push(index);
                 ruler.children[index].classList.add('error');
             } else {
