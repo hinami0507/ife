@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>听指令的小方块3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div id="map"></div>
+    <div id="console"></div>
+    <button id="go">执行</button>
+    <p>
+        指令说明：<br/>
+        三个方法：go，tra，mov <br/>
+        四个方向参数: top,left,right,bottom<br/>
+        例如：<br/>
+        go 3：向当前方向前进三格<br/>
+        tra top 2：向屏幕上方平移两格 <br/>
+        mov right 4：方向转向屏幕右侧，向屏幕的右侧移动四格
+    </p>
+
+</div>
+<script src="main.js"></script>
+<script>
+    (function () {
+        //构造10*10 格子为30px的棋盘，小车
+        mapInit('#map', 14, 30);
+        //控制台初始化
+        var consoler = consoleInit('#console');
+
+        //小车
+        var car = document.querySelector('#car');
+        //命令输入
+        var textarea = document.querySelector('textarea');
+
+        //执行命令
+        document.querySelector('#go').addEventListener('click', function () {
+            if (JSON.parse(consoler.dataset.errors||'[]').length > 0) {
+                alert('指令格式错误');
+                return;
+            }
+            //指令数组
+            var arr = JSON.parse(consoler.dataset.cmd || '[]');
+            //指令拆分成单一指令流
+            var list = [];
+            arr.forEach(function (e) {
+                var action = e.split(' ');
+                var direction, num;
+                if (action[0] == 'go') {
+                    direction = car.dataset.direction;
+                    num = parseInt(action[1]);
+
+                } else if (action[0] == 'mov') {
+                    direction = action[1];
+                    num = parseInt(action[2]);
+                    list.push({
+                        method: toTurn,
+                        direction: direction
+                    });
+                } else if (action[0] = 'tra') {
+                    direction = action[1];
+                    num = parseInt(action[2]);
+                }
+                while (num > 0) {
+                    num--;
+                    list.push({
+                        method: toMove,
+                        direction: direction
+                    });
+                }
+            });
+
+            //递归执行函数
+            var gogogo = function (car, list) {
+                var obj = list.shift();
+                if (obj) {
+                    obj.method(car, obj.direction, function () {
+                        gogogo(car, list);
+                    });
+                }
+            }
+
+            //执行！
+            gogogo(car, list);
+        });
+
+    })();
+</script>
+</body>
+</html>

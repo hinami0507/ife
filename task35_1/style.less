@@ -1,0 +1,108 @@
+.container {
+  position: relative;
+  width: 800px;
+  height: auto;
+  margin: 60px auto;
+}
+
+/*计数方法*/
+.counter() {
+  counter-reset: item;
+  > *:before {
+    counter-increment: item;
+    content: counter(item);
+  }
+}
+
+/*会移动的小方块*/
+#car {
+  background: darkseagreen;
+  border-right: 4px solid palevioletred;
+  box-sizing: border-box;
+  position: absolute;
+  transition: .5s all;
+  &[data-direction=right]{
+    transform: rotate(0deg);
+  }
+  &[data-direction=left]{
+    transform: rotate(180deg);
+  }
+  &[data-direction=top]{
+    transform: rotate(270deg);
+  }
+  &[data-direction=bottom]{
+    transform: rotate(90deg);
+  }
+}
+
+/*按钮*/
+#go {
+  padding: 8px 20px;
+  margin-left: 60px;
+  clear:both;
+  display: block;
+}
+
+/*棋盘*/
+#map {
+  position: relative;
+  //!*格子*!
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    td {
+      padding: 0;
+      border: 1px solid #ddd;
+    }
+  }
+  //!*地图边上的标号*!
+  i {
+    position: absolute;
+    text-align: center;
+  }
+}
+
+/*用来输入指令的控制台*/
+#console {
+  background: #ddd;
+  position: relative;
+  margin: 15px;
+  overflow: hidden;
+  float:left;
+  //行号
+  .ruler {
+    .counter;
+    position: absolute;
+    height: 150px;
+    width: 40px;
+
+    left: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    i {
+      display: block;
+      text-align: right;
+      padding: 0 5px 0 0;
+      &.error{
+        background:rgba(255,0,0,.5);
+      }
+    }
+    line-height: 1.4;
+    font-size: 16px;
+  }
+  textarea {
+    display: block;
+    width:380px;
+    border: none;
+    padding: 0;
+    margin: 0 0 0 40px;
+    background: #494443;
+    height: 150px;
+    color: #fff;
+    overflow-y: scroll;
+    outline: none;
+    line-height: 1.4;
+    font-size: 16px;
+  }
+}
